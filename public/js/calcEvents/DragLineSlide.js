@@ -5,6 +5,7 @@ class DragLineSlide{
         this.startObj = startObj;
         this.objCalc = new Calc(this.startObj);
         this.draggingLineHandler = this.dragging.bind(this);
+        this.transitionEndLineHandler = this.transitionEnd.bind(this);
         this.fContent = document.querySelectorAll('.fancybox-content');
         this.fSlide = document.querySelectorAll('.fancybox-slide');
         this.fCurrentSlide = null;
@@ -33,6 +34,11 @@ class DragLineSlide{
         this.fCurrentSlide.style.transform = ("translate(" + this.startObj.dataToCreateSliderLine.centerXCoordinata + "px, " + "0px)");;
         
         this.fCurrentSlide.addEventListener('pointermove', this.draggingLineHandler);
+
+        
+        this.startObj.dataToCreateSliderLine.fSlides.forEach( (el) => {
+            el.addEventListener('transitionend', this.transitionEndLineHandler);
+        } );
     }
 
     setDataCreateSliderLine (e) {
@@ -99,36 +105,7 @@ class DragLineSlide{
 
     stopLineDrag (e) {
         console.log(this.startObj.dataToCreateSliderLine, 'before');
-        if (this.startObj.dataToCreateSliderLine.centerXCoordinata < 0) {
-            this.startObj.dataToCreateSliderLine.leftMoving = true;
-            this.startObj.dataToCreateSliderLine.rightMoving = null;
-            if (this.startObj.dataToCreateSliderLine.rightSliderInd != null) {
-                let newCoords = -this.startObj.dataToCreateSliderLine.rightXCoordinata;
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.centerSliderInd].style.transition = "all 0.4s ease 0s";
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.centerSliderInd].style.transform = ("translate(" + newCoords + "px, " + "0px)");
-                
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.rightSliderInd].style.transition = "all 0.4s ease 0s";
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.rightSliderInd].style.transform = ("translate(" + "0px, " + "0px)");
-            }
-            if (this.startObj.dataToCreateSliderLine.leftSliderInd != null) {
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.leftSliderInd].removeAttribute("style");
-            }
-        }
-        if (this.startObj.dataToCreateSliderLine.centerXCoordinata > 0) {
-            this.startObj.dataToCreateSliderLine.leftMoving = null;
-            this.startObj.dataToCreateSliderLine.rightMoving = true;
-            if (this.startObj.dataToCreateSliderLine.leftSliderInd != null) {
-                let newCoords = -this.startObj.dataToCreateSliderLine.leftXCoordinata;
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.centerSliderInd].style.transition = "all 0.4s ease 0s";
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.centerSliderInd].style.transform = ("translate(" + newCoords + "px, " + "0px)");
-
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.leftSliderInd].style.transition = "all 0.4s ease 0s";
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.leftSliderInd].style.transform = ("translate(" + "0px, " + "0px)");
-            }
-            if (this.startObj.dataToCreateSliderLine.rightSliderInd != null) {
-                this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.rightSliderInd].removeAttribute("style");
-            }
-        }
+        this.objCalc.setCalcLineChangeSlider();
         this.fCurrentSlide.style.cursor = "grab";
 
         
@@ -150,6 +127,16 @@ class DragLineSlide{
         for (let propLocal in this.startDataPointer) {
             this.startDataPointer[propLocal] = null;
         }
+    }
+
+    transitionEnd (e) {
+        console.log(e);
+        this.startObj.dataToCreateSliderLine.fSlides.forEach( (el) => {
+            el.removeAttribute("style");
+        } );
+        this.startObj.dataToCreateSliderLine.fSlides.forEach( (el) => {
+            el.removeEventListener('transitionend', this.transitionEndLineHandler);
+        } );
     }
 }
 
