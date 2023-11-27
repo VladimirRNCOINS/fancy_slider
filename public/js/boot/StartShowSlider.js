@@ -42,7 +42,8 @@ class StartShowSlider {
             rightXCoordinata: null,
             fSlides: null,
             leftMoving: null,
-            rightMoving: null
+            rightMoving: null,
+            change: false,
         };
         this.objEvents = null,
         this.objInitial = null,

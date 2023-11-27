@@ -32,6 +32,39 @@ class ChangeSlider {
 
         this.resizeEvent.calcResizeSlider();
     }
+
+    changeThumbImage () {
+        console.log(this.startObj, 'before');
+        let lastInd, newInd; 
+        let fThumbsListAnchors = document.querySelectorAll(".fancybox-thumbs__list a");
+        this.startObj.dataToCreateSliderLine.fSlides.forEach( (el,ind) => {
+            if(el.classList.contains("fancybox-slide--current")) {
+                el.classList.remove("fancybox-slide--current");
+                lastInd = ind;
+            }
+        });
+        console.log(this.startObj, 'after');
+        console.log(lastInd, 'before');
+        if (this.startObj.dataToCreateSliderLine.leftMoving == true && this.startObj.dataToCreateSliderLine.fSlides[lastInd + 1]) {
+            this.startObj.dataToCreateSliderLine.fSlides[lastInd + 1].classList.add("fancybox-slide--current");
+            newInd = lastInd + 1;
+        }
+        else if (this.startObj.dataToCreateSliderLine.rightMoving == true && this.startObj.dataToCreateSliderLine.fSlides[lastInd - 1]) {
+            this.startObj.dataToCreateSliderLine.fSlides[lastInd - 1].classList.add("fancybox-slide--current");
+            newInd = lastInd - 1;
+        }
+        else {
+            this.startObj.dataToCreateSliderLine.fSlides[lastInd].classList.add("fancybox-slide--current");
+            newInd = lastInd;
+        } 
+        console.log(lastInd, 'after');
+        fThumbsListAnchors.forEach( (el) => {
+            el.classList.remove("fancybox-thumbs-active");
+        });
+
+        this.startObj.dataToCreateSliderLine.centerSliderInd = newInd;
+        fThumbsListAnchors[newInd].classList.add("fancybox-thumbs-active");
+    }
 }
 
 export default ChangeSlider;

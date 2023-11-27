@@ -16,7 +16,6 @@ class Calc {
     }
 
     setCalcLineSize () {
-        //console.log(this.startObj.dataToCreateSliderLine);
         this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.centerSliderInd].style.transform = 
                             ("translate(" + this.startObj.dataToCreateSliderLine.centerXCoordinata + "px, " + "0px)");
         if ( this.startObj.dataToCreateSliderLine.leftSliderInd != null ) {
@@ -32,6 +31,7 @@ class Calc {
     }
 
     setCalcLineChangeSlider () {
+        this.startObj.dataToCreateSliderLine.change = false;
         if (this.startObj.dataToCreateSliderLine.centerXCoordinata < 0) {
             this.startObj.dataToCreateSliderLine.leftMoving = true;
             this.startObj.dataToCreateSliderLine.rightMoving = null;
@@ -42,6 +42,7 @@ class Calc {
                 
                 this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.rightSliderInd].style.transition = "all 0.4s ease 0s";
                 this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.rightSliderInd].style.transform = ("translate(" + "0px, " + "0px)");
+                this.startObj.dataToCreateSliderLine.change = true;
             }
             if (this.startObj.dataToCreateSliderLine.leftSliderInd != null) {
                 this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.leftSliderInd].removeAttribute("style");
@@ -57,10 +58,15 @@ class Calc {
 
                 this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.leftSliderInd].style.transition = "all 0.4s ease 0s";
                 this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.leftSliderInd].style.transform = ("translate(" + "0px, " + "0px)");
+                this.startObj.dataToCreateSliderLine.change = true;
             }
             if (this.startObj.dataToCreateSliderLine.rightSliderInd != null) {
                 this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.rightSliderInd].removeAttribute("style");
             }
+        }
+        if (this.startObj.dataToCreateSliderLine.change == false) {
+            this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.centerSliderInd].style.transition = "all 0.4s ease 0s";
+            this.startObj.dataToCreateSliderLine.fSlides[this.startObj.dataToCreateSliderLine.centerSliderInd].style.transform = ("translate(" + "0px, " + "0px)");
         }
     }
 }

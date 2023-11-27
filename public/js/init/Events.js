@@ -50,12 +50,15 @@ class Events {
             });
         }
         this.objLineSlide = new DragLineSlide(this.startObj);
-        this.fCurrentSlide = document.querySelector('.fancybox-slide--current');
-        this.fCurrentSlide.addEventListener('pointerdown', {handleEvent: this.startLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
-        this.fCurrentSlide.addEventListener('pointerup', {handleEvent: this.stopLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
-        this.fCurrentSlide.addEventListener('pointercancel', {handleEvent: this.stopLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
+        this.fSlides = document.querySelectorAll('.fancybox-slide');
+        if (this.fSlides.length) {
+            this.fSlides.forEach( (el) => {
+                el.addEventListener('pointerdown', {handleEvent: this.startLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
+                el.addEventListener('pointerup', {handleEvent: this.stopLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
+                el.addEventListener('pointercancel', {handleEvent: this.stopLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
+            });
+        }
 
-        
         this.fArrowsButton = document.querySelectorAll('.fancybox-navigation .fancybox-button');
         if (this.fArrowsButton.length > 1) {
             this.objArrowsNavigation = new ArrowsNavigation(this.startObj);
