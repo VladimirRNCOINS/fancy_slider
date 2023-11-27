@@ -5,7 +5,6 @@ class ArrowsNavigation {
         this.startObj = startObj;
         this.leftButton = document.querySelector('.fancybox-button--arrow_left');
         this.rightButton = document.querySelector('.fancybox-button--arrow_right');
-        this.findActiveIndexThumbs();
     }
 
     findActiveIndexThumbs () {

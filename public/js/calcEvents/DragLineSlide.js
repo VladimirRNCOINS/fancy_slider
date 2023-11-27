@@ -133,7 +133,6 @@ class DragLineSlide{
             el.removeEventListener('transitionend', this.transitionEndLineHandler);
         } );
         this.objChangeSlider.changeThumbImage();
-        
     }
 }
 

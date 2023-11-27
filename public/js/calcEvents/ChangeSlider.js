@@ -4,8 +4,7 @@ import InfobarSlider from './InfobarSlider.js';
 
 class ChangeSlider {
     constructor (startObj) {
-        this.startObj = startObj;
-        this.resizeEvent = new ResizeEvent(this.startObj);
+        this.startObj = startObj; 
     }
 
     changeMainImage () {
@@ -29,12 +28,11 @@ class ChangeSlider {
         this.objInfobarSlider.setInfoInInfobar();
         this.objArrowsNavigation = new ArrowsNavigation(this.startObj);
         this.objArrowsNavigation.findActiveIndexThumbs();
-
+        this.resizeEvent = new ResizeEvent(this.startObj); 
         this.resizeEvent.calcResizeSlider();
     }
 
     changeThumbImage () {
-        console.log(this.startObj, 'before');
         let lastInd, newInd; 
         let fThumbsListAnchors = document.querySelectorAll(".fancybox-thumbs__list a");
         this.startObj.dataToCreateSliderLine.fSlides.forEach( (el,ind) => {
@@ -43,8 +41,6 @@ class ChangeSlider {
                 lastInd = ind;
             }
         });
-        console.log(this.startObj, 'after');
-        console.log(lastInd, 'before');
         if (this.startObj.dataToCreateSliderLine.leftMoving == true && this.startObj.dataToCreateSliderLine.fSlides[lastInd + 1]) {
             this.startObj.dataToCreateSliderLine.fSlides[lastInd + 1].classList.add("fancybox-slide--current");
             newInd = lastInd + 1;
@@ -57,13 +53,17 @@ class ChangeSlider {
             this.startObj.dataToCreateSliderLine.fSlides[lastInd].classList.add("fancybox-slide--current");
             newInd = lastInd;
         } 
-        console.log(lastInd, 'after');
         fThumbsListAnchors.forEach( (el) => {
             el.classList.remove("fancybox-thumbs-active");
         });
 
         this.startObj.dataToCreateSliderLine.centerSliderInd = newInd;
         fThumbsListAnchors[newInd].classList.add("fancybox-thumbs-active");
+        this.startObj.switchSmallThumbs.currentImg = this.startObj.dataToCreateSliderLine.centerSliderInd + 1;
+        this.objInfobarSlider = new InfobarSlider(this.startObj);
+        this.objInfobarSlider.setInfoInInfobar();
+        this.objArrowsNavigation = new ArrowsNavigation(this.startObj);
+        this.objArrowsNavigation.findActiveIndexThumbs();
     }
 }
 
