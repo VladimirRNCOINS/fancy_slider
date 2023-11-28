@@ -1,10 +1,13 @@
 import ResizeEvent from './ResizeEvent.js';
-import ArrowsNavigation from './ArrowsNavigation.js';
 import InfobarSlider from './InfobarSlider.js';
+import CalcArrowsNavagation from './CalcArrowsNavagation.js';
 
 class ChangeSlider {
     constructor (startObj) {
-        this.startObj = startObj; 
+        this.startObj = startObj;
+        this.objCalcArrowsNavagation = new CalcArrowsNavagation(this.startObj);
+        this.objInfobarSlider = new InfobarSlider(this.startObj);
+        this.resizeEvent = new ResizeEvent(this.startObj);
     }
 
     changeMainImage () {
@@ -24,11 +27,11 @@ class ChangeSlider {
         }
         
         this.startObj.objClientProps.scale = 1;
-        this.objInfobarSlider = new InfobarSlider(this.startObj);
+        
         this.objInfobarSlider.setInfoInInfobar();
-        this.objArrowsNavigation = new ArrowsNavigation(this.startObj);
-        this.objArrowsNavigation.findActiveIndexThumbs();
-        this.resizeEvent = new ResizeEvent(this.startObj); 
+        
+        this.objCalcArrowsNavagation.findActiveIndexThumbs();
+         
         this.resizeEvent.calcResizeSlider();
     }
 
@@ -60,10 +63,10 @@ class ChangeSlider {
         this.startObj.dataToCreateSliderLine.centerSliderInd = newInd;
         fThumbsListAnchors[newInd].classList.add("fancybox-thumbs-active");
         this.startObj.switchSmallThumbs.currentImg = this.startObj.dataToCreateSliderLine.centerSliderInd + 1;
-        this.objInfobarSlider = new InfobarSlider(this.startObj);
+        
         this.objInfobarSlider.setInfoInInfobar();
-        this.objArrowsNavigation = new ArrowsNavigation(this.startObj);
-        this.objArrowsNavigation.findActiveIndexThumbs();
+        
+        this.objCalcArrowsNavagation.findActiveIndexThumbs();
     }
 }
 
