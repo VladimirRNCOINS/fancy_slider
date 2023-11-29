@@ -11,8 +11,46 @@ class Calc {
             fsDivContent[i].style.height = this.startObj.objClientProps.loadHeight + 'px';
             
             fsDivContent[i].style.transform = ("translate(" + this.startObj.objClientProps.translateX + "px, " + this.startObj.objClientProps.translateY + "px) scale(" + this.startObj.objClientProps.scale + ")");
+            //fsDivContent[i].style.transform = ("translate(-191.5px, -122.2px) scale(1.4)");
         }
         return;
+    }
+
+    getCalcScaleSize () {
+        let fCurrent = document.querySelector('.fancybox-slide--current .fancybox-content');
+        let naturalWidth = this.startObj.objClientProps.loadWidth;
+        let naturalHeight = this.startObj.objClientProps.loadHeight;
+        let newScale = +this.startObj.objClientProps.scale.toFixed(2);
+        
+        let beforeWidth = fCurrent.getBoundingClientRect().width;
+        let beforeHeight = fCurrent.getBoundingClientRect().height;
+
+        let leftX = fCurrent.getBoundingClientRect().x;
+		let topY = fCurrent.getBoundingClientRect().y;
+        let afterWidth = newScale * naturalWidth;
+		let afterHeight = newScale * naturalHeight;
+
+        this.resetStyleTransition();
+        
+        //set new TranlateX
+		this.startObj.objClientProps.translateX = leftX - (afterWidth - beforeWidth)/2;
+        
+		//set new TranlateY
+		this.startObj.objClientProps.translateY = topY - (afterHeight - beforeHeight)/2;
+    }
+
+    setStyleTransition () {
+        let fsDivContent = document.querySelectorAll(".fancybox-content");
+        for (let i=0; i < fsDivContent.length; i++) {
+            fsDivContent[i].style.transition = "all 0.25s linear 0s";
+        }
+    }
+
+    resetStyleTransition () {
+        let fsDivContent = document.querySelectorAll(".fancybox-content");
+        for (let i=0; i < fsDivContent.length; i++) {
+            fsDivContent[i].style.transition = "all 0s linear 0s";
+        }
     }
 
     setCalcLineSize () {

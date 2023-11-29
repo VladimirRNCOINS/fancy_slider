@@ -6,6 +6,7 @@ class ZoomEvents {
         this.startObj = startObj;
         this.objResizeEvent = new ResizeEvent(this.startObj);
         this.objCalc = new Calc(this.startObj);
+        this.transitionEndZoomHandler = this.zoomTransitionEnd.bind(this);
     }
 
     zoomPlusCalc () {
@@ -25,38 +26,35 @@ class ZoomEvents {
     }
 
     getZoomData (mark) {
-        let beforeWidth, beforeHeight, leftX, topY, afterWidth, afterHeight;
-        let currentElem = document.querySelector('.fancybox-slide--current .fancybox-content');
-        beforeWidth = currentElem.getBoundingClientRect().width;
-        beforeHeight = currentElem.getBoundingClientRect().height;
-        
+        this.fsDivContent = document.querySelectorAll(".fancybox-content");
+        this.fsDivContent.forEach((el) => {
+            el.addEventListener('transitionend', this.transitionEndZoomHandler);
+        });
         if (mark == 'plus') {
             this.startObj.objClientProps.scale = this.startObj.objClientProps.scale + this.startObj.objClientProps.scaleStep;
         }
         if (mark == 'minus') {
             let promScale = this.startObj.objClientProps.scale - this.startObj.objClientProps.scaleStep;
             if (promScale <= 1) {
-                this.startObj.objClientProps.scale = 1;
                 this.objResizeEvent.calcResizeSlider();
+                this.objCalc.setStyleTransition();
                 return;
             }
             this.startObj.objClientProps.scale = this.startObj.objClientProps.scale - this.startObj.objClientProps.scaleStep;
         }
         
-        this.objCalc.setCalcSize();
-        
-        leftX = currentElem.getBoundingClientRect().x;
-		topY = currentElem.getBoundingClientRect().y;
-        afterWidth = currentElem.getBoundingClientRect().width;
-		afterHeight = currentElem.getBoundingClientRect().height;
+        this.objCalc.getCalcScaleSize();
 
-        //set new TranlateX
-		this.startObj.objClientProps.translateX = leftX - (afterWidth - beforeWidth)/2;
-        
-		//set new TranlateY
-		this.startObj.objClientProps.translateY = topY - (afterHeight - beforeHeight)/2;
-        
         this.objCalc.setCalcSize();
+
+        this.objCalc.setStyleTransition();
+    }
+
+    zoomTransitionEnd () {
+        this.fsDivContent.forEach( (el) => {
+            el.removeEventListener('transitionend', this.transitionEndZoomHandler);
+        } );
+        this.objCalc.resetStyleTransition();
     }
 }
 
