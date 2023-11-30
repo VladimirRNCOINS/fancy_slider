@@ -132,7 +132,9 @@ class DragLineSlide{
         this.startObj.dataToCreateSliderLine.fSlides.forEach( (el) => {
             el.removeEventListener('transitionend', this.transitionEndLineHandler);
         } );
-        this.objChangeSlider.changeThumbImage();
+        if (this.startObj.objEvents.fContents.length > 1) {
+            this.objChangeSlider.changeThumbImage();
+        }
     }
 }
 
