@@ -17,30 +17,34 @@ class DragLineSlide{
             windowWidth: null,
             elementWidthPadding: null,
         };
+        this.compliteDrag = true;
     }
 
     startLineDrag (e) {
-        this.setNullToDataToCreateSliderLine();
-        this.setDataCreateSliderLine (e);
+        if (this.compliteDrag == true) {
+            this.setNullToDataToCreateSliderLine();
+            this.setDataCreateSliderLine (e);
 
-        if (this.startObj.dataToCreateSliderLine.leftSliderInd !== null) {
-            let closestLeft = this.fContent[this.startObj.dataToCreateSliderLine.leftSliderInd].closest('.fancybox-slide');
-            closestLeft.style.transform = ("translate(" + (this.startObj.dataToCreateSliderLine.leftXCoordinata) + "px, " + "0px)");
-            closestLeft.style.display = "block";
-        }
-        if (this.startObj.dataToCreateSliderLine.rightSliderInd !== null) {
-            let closestRight = this.fContent[this.startObj.dataToCreateSliderLine.rightSliderInd].closest('.fancybox-slide');
-            closestRight.style.transform = ("translate(" + (this.startObj.dataToCreateSliderLine.rightXCoordinata) + "px, " + "0px)");
-            closestRight.style.display = "block";
-        }
-        this.fCurrentSlide.style.transform = ("translate(" + this.startObj.dataToCreateSliderLine.centerXCoordinata + "px, " + "0px)");;
-        
-        this.fCurrentSlide.addEventListener('pointermove', this.draggingLineHandler);
+            if (this.startObj.dataToCreateSliderLine.leftSliderInd !== null) {
+                let closestLeft = this.fContent[this.startObj.dataToCreateSliderLine.leftSliderInd].closest('.fancybox-slide');
+                closestLeft.style.transform = ("translate(" + (this.startObj.dataToCreateSliderLine.leftXCoordinata) + "px, " + "0px)");
+                closestLeft.style.display = "block";
+            }
+            if (this.startObj.dataToCreateSliderLine.rightSliderInd !== null) {
+                let closestRight = this.fContent[this.startObj.dataToCreateSliderLine.rightSliderInd].closest('.fancybox-slide');
+                closestRight.style.transform = ("translate(" + (this.startObj.dataToCreateSliderLine.rightXCoordinata) + "px, " + "0px)");
+                closestRight.style.display = "block";
+            }
+            this.fCurrentSlide.style.transform = ("translate(" + this.startObj.dataToCreateSliderLine.centerXCoordinata + "px, " + "0px)");;
+            
+            this.fCurrentSlide.addEventListener('pointermove', this.draggingLineHandler);
 
-        
-        this.startObj.dataToCreateSliderLine.fSlides.forEach( (el) => {
-            el.addEventListener('transitionend', this.transitionEndLineHandler);
-        } );
+            
+            this.startObj.dataToCreateSliderLine.fSlides.forEach( (el) => {
+                el.addEventListener('transitionend', this.transitionEndLineHandler);
+            } );
+        }
+        this.compliteDrag = false;
     }
 
     setDataCreateSliderLine (e) {
@@ -96,7 +100,10 @@ class DragLineSlide{
     dragging(e) {
         let dragShiftX;
         let dragX = e.pageX;
-        if (this.startObj.dataToCreateSliderLine.centerSliderInd <= 0 || this.startObj.dataToCreateSliderLine.centerSliderInd + 1 >= this.startObj.objClientProps.bigImages.length ) {
+
+        if (((this.startObj.dataToCreateSliderLine.centerSliderInd <= 0) && ((this.startDataPointer.startDragX - dragX) < 0)) || 
+        ((this.startObj.dataToCreateSliderLine.centerSliderInd + 1 >= this.startObj.objClientProps.bigImages.length)  && ((this.startDataPointer.startDragX - dragX) > 0))) {
+            
             dragShiftX = (dragX - this.startDataPointer.startDragX) / 5;
         }
         else {
@@ -111,7 +118,6 @@ class DragLineSlide{
         this.objCalc.setCalcLineChangeSlider();
         this.fCurrentSlide.style.cursor = "grab";
 
-        
         this.fCurrentSlide.removeEventListener('pointermove', this.draggingLineHandler);
     }
 
@@ -126,6 +132,9 @@ class DragLineSlide{
     }
 
     transitionEnd (e) {
+        console.log(this.compliteDrag);
+        this.compliteDrag = true;
+        console.log('kjh');
         this.startObj.dataToCreateSliderLine.fSlides.forEach( (el) => {
             el.removeAttribute("style");
         } );

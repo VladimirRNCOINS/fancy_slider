@@ -11,7 +11,6 @@ class Calc {
             fsDivContent[i].style.height = this.startObj.objClientProps.loadHeight + 'px';
             
             fsDivContent[i].style.transform = ("translate(" + this.startObj.objClientProps.translateX + "px, " + this.startObj.objClientProps.translateY + "px) scale(" + this.startObj.objClientProps.scale + ")");
-            //fsDivContent[i].style.transform = ("translate(-191.5px, -122.2px) scale(1.4)");
         }
         return;
     }
