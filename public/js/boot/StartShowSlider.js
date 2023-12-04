@@ -8,6 +8,7 @@ class StartShowSlider {
     }
 
     invokeDataSet (event) {
+        this.clickThumbMiddle = null;
         this.objClientProps = {
             clickParentDiv: this.getClosestDiv(event),
             clickIndexParentDiv: null,
@@ -25,7 +26,8 @@ class StartShowSlider {
             loadHeight: null,
             loadWidth: null,
             loadImg: null,
-            currentElement: null
+            currentElement: null,
+            sourceAnchor: this.getSourceAnchor()
         };
         this.switchSmallThumbs = {
             clkThumbInd: null,
@@ -59,6 +61,7 @@ class StartShowSlider {
 
     getClosestDiv (event) {
         if (event.type == 'click') {
+            this.clickThumbMiddle = event.currentTarget;
             return event.target.closest("div");
         }
         return;
@@ -71,7 +74,16 @@ class StartShowSlider {
             ind = elementInd - 1;
         }
         else {
-            ind = 0;
+            if (this.clickThumbMiddle != null) {
+                let href = this.clickThumbMiddle.getAttribute('href');
+                let indThumbMiddle = this.objClientProps.bigImages.findIndex( (el) => {
+                    return el == href;
+                });
+                ind = indThumbMiddle;
+            }
+            else {
+                ind = 0;
+            }
         }
         this.objClientProps.clickIndexParentDiv = ind;
         return;
@@ -130,6 +142,11 @@ class StartShowSlider {
             this.objClientProps.smallImages[indx] = el.children[0].getAttribute('src');
             this.objClientProps.bigImages[indx] = el.getAttribute('href');
         } );
+    }
+
+    getSourceAnchor () {
+        let fThumbs = document.querySelectorAll('.fancybox-thumb');
+        return fThumbs;
     }
 }
 

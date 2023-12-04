@@ -49,7 +49,6 @@ class Initial  {
     prepareHtmlValueFancyBoxStage () {
         this.fancyBoxStage = document.createElement('div');
         this.fancyBoxStage.classList.add("fancybox-stage");
-        
         for (let fs = 0; fs < this.objClientProps.bigImages.length; fs++) {
             let fsDiv = document.createElement('div');
             let fsDivContent = document.createElement('div');
@@ -62,18 +61,39 @@ class Initial  {
             }
             fsDiv.classList.add("fancybox-slide--image");
             fsDivContent.classList.add("fancybox-content");
+            if (this.objClientProps.sourceAnchor[fs].classList.contains('video-image-wrapper')) {
+                let fsVideo = document.createElement('video');
+                let fsSource = document.createElement('source');
+                fsDivContent.style.width = this.objClientProps.loadWidth + 'px';
+                fsDivContent.style.height = this.objClientProps.loadHeight + 'px';
 
-            fsDivContent.style.width = this.objClientProps.loadWidth + 'px';
-            fsDivContent.style.height = this.objClientProps.loadHeight + 'px';
+                fsDivContent.style.transform = ("translate(" + this.objClientProps.translateX + "px, " + this.objClientProps.translateY + "px) scale(" + this.objClientProps.scale + ")");
+                fsVideo.classList.add("fancybox-video");
+                fsVideo.setAttribute('controls', "");
+                fsVideo.setAttribute('controlslist', "nodownload");
+                fsVideo.setAttribute('poster', "./img/video_image.jpg");
+                //fsVideo.setAttribute('autoplay', false);
+                //fsVideo.style.pointerEvents = "none";
+                fsSource.setAttribute('src', this.objClientProps.bigImages[fs]);
+                fsSource.setAttribute('type', 'video/mp4');
+                fsVideo.append(fsSource);
+                fsDivContent.append(fsVideo);
+            }
+            else {
+                fsDivContent.style.width = this.objClientProps.loadWidth + 'px';
+                fsDivContent.style.height = this.objClientProps.loadHeight + 'px';
 
-            fsDivContent.style.transform = ("translate(" + this.objClientProps.translateX + "px, " + this.objClientProps.translateY + "px) scale(" + this.objClientProps.scale + ")");
-            
-            fsImage.classList.add("fancybox-image");
-            fsImage.setAttribute('src', this.objClientProps.bigImages[fs]);
-            fsImage.style.pointerEvents = "none";
-            
-            fsDivContent.append(fsImage);
-            
+                fsDivContent.style.transform = ("translate(" + this.objClientProps.translateX + "px, " + this.objClientProps.translateY + "px) scale(" + this.objClientProps.scale + ")");
+
+
+
+                
+                fsImage.classList.add("fancybox-image");
+                fsImage.setAttribute('src', this.objClientProps.bigImages[fs]);
+                fsImage.style.pointerEvents = "none";
+                
+                fsDivContent.append(fsImage);
+            }
             fsDiv.append(fsDivContent);
             this.fancyBoxStage.append(fsDiv);
         }

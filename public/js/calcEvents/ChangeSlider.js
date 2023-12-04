@@ -26,6 +26,7 @@ class ChangeSlider {
         this.objInfobarSlider.setInfoInInfobar();
         
         this.objCalcArrowsNavagation.findActiveIndexThumbs();
+        this.objCalcArrowsNavagation.checkVideoElement();
          
         this.resizeEvent.calcResizeSlider();
     }
@@ -93,6 +94,7 @@ class ChangeSlider {
         this.objInfobarSlider.setInfoInInfobar();
         
         this.objCalcArrowsNavagation.findActiveIndexThumbs();
+        this.objCalcArrowsNavagation.checkVideoElement();
     }
 }
 

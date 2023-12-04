@@ -132,9 +132,7 @@ class DragLineSlide{
     }
 
     transitionEnd (e) {
-        console.log(this.compliteDrag);
         this.compliteDrag = true;
-        console.log('kjh');
         this.startObj.dataToCreateSliderLine.fSlides.forEach( (el) => {
             el.removeAttribute("style");
         } );

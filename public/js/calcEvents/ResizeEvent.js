@@ -9,11 +9,20 @@ class ResizeEvent {
 
     calcResizeSlider (img) {
         let fImages = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-image');
-        if (!fImages) {
+        let fVideo = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-video');
+        
+        if (!fImages && !fVideo) {
             this.startLoadingData(img);
         }
         else {
-            this.repeatedLoadingData(fImages);
+            let elem;
+            if (fImages) {
+                elem = fImages;
+            }
+            if (fVideo) {
+                elem = fVideo;
+            }
+            this.repeatedLoadingData(elem);
         }
         this.objCalc.setCalcSize();
     }

@@ -32,6 +32,26 @@ class CalcArrowsNavagation {
             this.rightButton.setAttribute('disabled', '');
         }
     }
+
+    checkVideoElement () {
+        let fVideoCurrent = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-video');
+        if (fVideoCurrent) {
+            fVideoCurrent.play();
+        }
+        else {
+            let fVideoNoCurrent = document.querySelector('.fancybox-slide .fancybox-content .fancybox-video');
+            if (fVideoNoCurrent) {
+                fVideoNoCurrent.pause();
+            }
+        }
+    }
+
+    loadVideoElement () {
+        return new Promise((resolve, reject) => {
+            let fVideo = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-video');
+            resolve(fVideo);
+        });
+    }
 }
 
 export default CalcArrowsNavagation;
