@@ -135,6 +135,7 @@ class StartShowSlider {
         this.fancyContener.style.display = 'block';
         this.objEvents = new Events(this);
         this.objCalcArrowsNavagation = new CalcArrowsNavagation(this);
+        this.objCalcArrowsNavagation.setArrowsParams();
         this.objCalcArrowsNavagation.checkVideoElement();
         return;
     }
