@@ -1,6 +1,7 @@
 import Initial from '../init/Initial.js';
 import Events from "../init/Events.js";
-import ResizeEvent from '../calcEvents/ResizeEvent.js'
+import ResizeEvent from '../calcEvents/ResizeEvent.js';
+import CalcArrowsNavagation from '../calcEvents/CalcArrowsNavagation.js';
 
 class StartShowSlider {
     constructor (event) {
@@ -133,6 +134,8 @@ class StartShowSlider {
         this.fancyContener = document.querySelector('.fancybox-container');
         this.fancyContener.style.display = 'block';
         this.objEvents = new Events(this);
+        this.objCalcArrowsNavagation = new CalcArrowsNavagation(this);
+        this.objCalcArrowsNavagation.checkVideoElement();
         return;
     }
 

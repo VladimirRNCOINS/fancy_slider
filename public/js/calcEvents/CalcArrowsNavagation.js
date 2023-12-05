@@ -45,13 +45,6 @@ class CalcArrowsNavagation {
             }
         }
     }
-
-    loadVideoElement () {
-        return new Promise((resolve, reject) => {
-            let fVideo = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-video');
-            resolve(fVideo);
-        });
-    }
 }
 
 export default CalcArrowsNavagation;

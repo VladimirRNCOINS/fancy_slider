@@ -72,8 +72,6 @@ class Initial  {
                 fsVideo.setAttribute('controls', "");
                 fsVideo.setAttribute('controlslist', "nodownload");
                 fsVideo.setAttribute('poster', "./img/video_image.jpg");
-                //fsVideo.setAttribute('autoplay', false);
-                //fsVideo.style.pointerEvents = "none";
                 fsSource.setAttribute('src', this.objClientProps.bigImages[fs]);
                 fsSource.setAttribute('type', 'video/mp4');
                 fsVideo.append(fsSource);
@@ -85,9 +83,6 @@ class Initial  {
 
                 fsDivContent.style.transform = ("translate(" + this.objClientProps.translateX + "px, " + this.objClientProps.translateY + "px) scale(" + this.objClientProps.scale + ")");
 
-
-
-                
                 fsImage.classList.add("fancybox-image");
                 fsImage.setAttribute('src', this.objClientProps.bigImages[fs]);
                 fsImage.style.pointerEvents = "none";
@@ -151,6 +146,7 @@ class Initial  {
                                 </svg>
                             </div>
                         </button>`;
+                        
         fNavigation.innerHTML = buttons;
         return fNavigation;
     }
