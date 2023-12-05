@@ -35,13 +35,20 @@ class CalcArrowsNavagation {
 
     checkVideoElement () {
         let fVideoCurrent = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-video');
+        let hZoomIn = document.getElementById("zoom_in_handsy");
+        let hZoomOut = document.getElementById("zoom_out_handsy");
+        
         if (fVideoCurrent) {
             fVideoCurrent.play();
+            hZoomIn.style.display = 'none';
+            hZoomOut.style.display = 'none';
         }
         else {
             let fVideoNoCurrent = document.querySelector('.fancybox-slide .fancybox-content .fancybox-video');
             if (fVideoNoCurrent) {
                 fVideoNoCurrent.pause();
+                hZoomIn.style.display = 'inline-block';
+                hZoomOut.style.display = 'inline-block';
             }
         }
     }

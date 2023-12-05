@@ -31,11 +31,11 @@ class Events {
         this.objZoomEvents = new ZoomEvents(this.startObj);
         this.clickZoomPlusHandler = this.clickZoomPlus.bind(this);
         this.clickZoomMinusHandler = this.clickZoomMinus.bind(this);
-        this.zoomIn = document.querySelector('#zoom_in');
+        this.zoomIn = document.querySelector('#zoom_in_handsy');
         if (this.zoomIn ) {
             this.zoomIn.addEventListener('click', this.clickZoomPlusHandler);
         }
-        this.zoomOut = document.querySelector('#zoom_out');
+        this.zoomOut = document.querySelector('#zoom_out_handsy');
         if (this.zoomOut ) {
             this.zoomOut.addEventListener('click', this.clickZoomMinusHandler);
         }
