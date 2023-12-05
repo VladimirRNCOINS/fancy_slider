@@ -4,6 +4,7 @@ import ChangeSlider from '../calcEvents/ChangeSlider.js';
 import ZoomEvents from '../calcEvents/ZoomEvents.js';
 import ArrowsNavigation from '../calcEvents/ArrowsNavigation.js';
 import DragLineSlide from '../calcEvents/DragLineSlide.js';
+import MouseMoveSliderElement from '../calcEvents/MouseMoveSliderElement.js';
 
 class Events {
 
@@ -50,12 +51,15 @@ class Events {
             });
         }
         this.objLineSlide = new DragLineSlide(this.startObj);
+        this.objMouseMoveSliderElement = new MouseMoveSliderElement();
         this.fSlides = document.querySelectorAll('.fancybox-slide');
+        this.mouseMoveHandler = this.mouseMoveSlider.bind(this);
         if (this.fSlides.length) {
             this.fSlides.forEach( (el) => {
                 el.addEventListener('pointerdown', {handleEvent: this.startLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
                 el.addEventListener('pointerup', {handleEvent: this.stopLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
                 el.addEventListener('pointercancel', {handleEvent: this.stopLineDrag, self: this.startObj, lineDrag: this.objLineSlide});
+                el.addEventListener('mousemove', this.mouseMoveHandler);
             });
         }
 
@@ -125,6 +129,10 @@ class Events {
 
     clickArrowsNavigation (e) {
         this.objArrowsNavigation.clickArrowsNavigation(e);
+    }
+
+    mouseMoveSlider () {
+        this.objMouseMoveSliderElement.checkMouseMoveElement();
     }
 }
 

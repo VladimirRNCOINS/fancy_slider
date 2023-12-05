@@ -383,3 +383,6 @@
     padding: 0;
     width: 100%;
 }
+.handsy-opacity-0 {
+    opacity: 0!important;
+}
