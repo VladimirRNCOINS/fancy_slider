@@ -48,7 +48,7 @@ class ResizeEvent {
             (((this.startObj.objClientProps.widthWindow - this.startObj.objClientProps.naturalWidth) <= 0) &&
             ((this.startObj.objClientProps.heightWindow - this.startObj.objClientProps.naturalHeight) <= 0))) {
             
-            this.startObj.objClientProps.loadWidth = this.startObj.objClientProps.widthWindow;
+            this.startObj.objClientProps.loadWidth = this.startObj.objClientProps.widthWindow - 100;
             img.style.width = +this.startObj.objClientProps.loadWidth + 'px';
             
             this.body.prepend(img);
@@ -56,11 +56,10 @@ class ResizeEvent {
             img.style.height = +img.offsetHeight + 'px';
             this.startObj.objClientProps.loadHeight = +img.offsetHeight;
 
-            this.startObj.objClientProps.translateX = 0;
+            this.startObj.objClientProps.translateX = 50;
             this.startObj.objClientProps.translateY = (this.startObj.objClientProps.heightWindow - this.startObj.objClientProps.loadHeight) / 2;
         }
         else {
-            
             this.startObj.objClientProps.loadHeight = this.startObj.objClientProps.heightWindow - 2 * this.startObj.objClientProps.mainPadding;
             img.style.height = +this.startObj.objClientProps.loadHeight + 'px';
 
@@ -84,14 +83,14 @@ class ResizeEvent {
             (((this.startObj.objClientProps.widthWindow - this.startObj.objClientProps.naturalWidth) >= 0) && (this.startObj.objClientProps.heightWindow - this.startObj.objClientProps.naturalHeight) <= 0) ||
             (((this.startObj.objClientProps.widthWindow - this.startObj.objClientProps.naturalWidth) <= 0) && ((this.startObj.objClientProps.heightWindow - this.startObj.objClientProps.naturalHeight) <= 0))) {
             
-            this.startObj.objClientProps.loadWidth = this.startObj.objClientProps.widthWindow;
+            this.startObj.objClientProps.loadWidth = this.startObj.objClientProps.widthWindow - 100;
 
             fImages.style.width = this.startObj.objClientProps.loadWidth + 'px';
             fImages.style.height = 'auto';
              
             this.startObj.objClientProps.loadHeight = +fImages.offsetHeight;
 
-            this.startObj.objClientProps.translateX = 0;
+            this.startObj.objClientProps.translateX = 50;
             this.startObj.objClientProps.translateY = (this.startObj.objClientProps.heightWindow - this.startObj.objClientProps.loadHeight) / 2;
         }
         else {
