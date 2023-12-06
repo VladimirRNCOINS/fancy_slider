@@ -14,10 +14,10 @@ class Initial  {
             <div class="fancybox-container fancybox-show-thumbs fancybox-is-open fancybox-is-zoomable fancybox-can-zoomIn" role="dialog" tabindex="-1" id="fancybox-container-1" style="transition-duration: 366ms; display: none;">
                 <div class="fancybox-bg"></div>
                 <div class="fancybox-inner">
-                    <div class="fancybox-infobar handsy-opacity-0">
+                    <div class="fancybox-infobar">
                         ${this.dataIndexCountInfo}
                     </div>
-                    <div class="fancybox-toolbar handsy-opacity-0" style="display: flex;">
+                    <div class="fancybox-toolbar" style="display: flex;">
                         <button class="fancybox-button button-toolbar" id="zoom_in_handsy" title="Zoom In" style="padding: 13px; user-select: none;">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path class="fslightbox-svg-path" d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z M 12.984375 7.9863281 A 1.0001 1.0001 0 0 0 12 9 L 12 12 L 9 12 A 1.0001 1.0001 0 1 0 9 14 L 12 14 L 12 17 A 1.0001 1.0001 0 1 0 14 17 L 14 14 L 17 14 A 1.0001 1.0001 0 1 0 17 12 L 14 12 L 14 9 A 1.0001 1.0001 0 0 0 12.984375 7.9863281 z"></path>
@@ -105,7 +105,6 @@ class Initial  {
         
         let fThumbsList = document.createElement('div');
         fThumbsList.classList.add('fancybox-thumbs__list');
-        fThumbsList.classList.add('handsy-opacity-0');
         
         for (let i=0; i < this.objClientProps.smallImages.length; i++) {
             let fsAnchor = document.createElement('a');
@@ -127,7 +126,6 @@ class Initial  {
     prepareHtmlNavigation () {
         let fNavigation = document.createElement('div');
         fNavigation.classList.add('fancybox-navigation');
-        fNavigation.classList.add('handsy-opacity-0');
 
         if (this.objClientProps.smallImages.length < 2) {
             fNavigation.innerHTML = `<div></div>`;

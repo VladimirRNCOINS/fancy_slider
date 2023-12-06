@@ -12,7 +12,6 @@ class MouseMoveSliderElement {
     }
 
     checkMouseMoveElement () {
-        
         if (this.mouseMove == false) {
             this.mouseMove = true;
             for (let navigation in this.navigations) {
@@ -25,7 +24,7 @@ class MouseMoveSliderElement {
                     this.navigations[navigation].classList.add('handsy-opacity-0');
                 }
                 this.mouseMove = false;
-            }, 7000);
+            }, 8000);
         }
         return; 
     }
