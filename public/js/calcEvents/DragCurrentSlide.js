@@ -16,7 +16,7 @@ class DragCurrentSlide {
     }
     
     startDrag(e) {
-        this.currentElem = document.querySelector('.fancybox-slide--current .fancybox-content');
+        this.currentElem = document.querySelector('.handsybox-slide--current .handsybox-content');
         this.currentElem.style.cursor = "grabbing";
         this.propsDragCurrentSlide.startDragX = e.pageX;
         this.propsDragCurrentSlide.startDragY = e.pageY;

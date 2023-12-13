@@ -12,8 +12,8 @@ class ChangeSlider {
     }
 
     changeMainImage () {
-        let fSlide = document.querySelectorAll(".fancybox-slide");
-        let fThumbsListAnchors = document.querySelectorAll(".fancybox-thumbs__list a");
+        let fSlide = document.querySelectorAll(".handsybox-slide");
+        let fThumbsListAnchors = document.querySelectorAll(".handsybox-thumbs__list a");
         
         this.changeCurrentClass (fSlide, fThumbsListAnchors).
         then((contentCurrent) =>{
@@ -35,28 +35,28 @@ class ChangeSlider {
         return new Promise((resolve, reject) => {
             for (let fs = 0; fs < fSlide.length; fs++) {
                 if (fs == this.startObj.switchSmallThumbs.clkThumbInd) {
-                    fSlide[fs].classList.add("fancybox-slide--current");
+                    fSlide[fs].classList.add("handsybox-slide--current");
     
-                    let contentCurrent = document.querySelector('.fancybox-slide--current .fancybox-content');
+                    let contentCurrent = document.querySelector('.handsybox-slide--current .handsybox-content');
                     contentCurrent.style.transition = "opacity 0s linear 0s";
                     contentCurrent.style.opacity = 0;
                     contentCurrent.addEventListener('transitionend', this.transitionEndChangeHandler);
                     
                     this.startObj.objClientProps.currentElement = fSlide[fs];
-                    fThumbsListAnchors[fs].classList.add("fancybox-thumbs-active");
+                    fThumbsListAnchors[fs].classList.add("handsybox-thumbs-active");
                     this.startObj.switchSmallThumbs.currentImg = fs + 1;
                     resolve(contentCurrent);
                 }
                 else {
-                    fSlide[fs].classList.remove("fancybox-slide--current");
-                    fThumbsListAnchors[fs].classList.remove("fancybox-thumbs-active");
+                    fSlide[fs].classList.remove("handsybox-slide--current");
+                    fThumbsListAnchors[fs].classList.remove("handsybox-thumbs-active");
                 }
             }
         });
     }
 
     transitionendChangeHandler (e) {
-        let contentCurrent = document.querySelector('.fancybox-slide--current .fancybox-content');
+        let contentCurrent = document.querySelector('.handsybox-slide--current .handsybox-content');
         contentCurrent.style.removeProperty('opacity');
         contentCurrent.style.removeProperty('transition');
         contentCurrent.removeEventListener('transitionend', this.transitionEndChangeHandler);
@@ -64,31 +64,31 @@ class ChangeSlider {
 
     changeThumbImage () {
         let lastInd, newInd; 
-        let fThumbsListAnchors = document.querySelectorAll(".fancybox-thumbs__list a");
+        let fThumbsListAnchors = document.querySelectorAll(".handsybox-thumbs__list a");
         this.startObj.dataToCreateSliderLine.fSlides.forEach( (el,ind) => {
-            if(el.classList.contains("fancybox-slide--current")) {
-                el.classList.remove("fancybox-slide--current");
+            if(el.classList.contains("handsybox-slide--current")) {
+                el.classList.remove("handsybox-slide--current");
                 lastInd = ind;
             }
         });
         if (this.startObj.dataToCreateSliderLine.leftMoving == true && this.startObj.dataToCreateSliderLine.fSlides[lastInd + 1]) {
-            this.startObj.dataToCreateSliderLine.fSlides[lastInd + 1].classList.add("fancybox-slide--current");
+            this.startObj.dataToCreateSliderLine.fSlides[lastInd + 1].classList.add("handsybox-slide--current");
             newInd = lastInd + 1;
         }
         else if (this.startObj.dataToCreateSliderLine.rightMoving == true && this.startObj.dataToCreateSliderLine.fSlides[lastInd - 1]) {
-            this.startObj.dataToCreateSliderLine.fSlides[lastInd - 1].classList.add("fancybox-slide--current");
+            this.startObj.dataToCreateSliderLine.fSlides[lastInd - 1].classList.add("handsybox-slide--current");
             newInd = lastInd - 1;
         }
         else {
-            this.startObj.dataToCreateSliderLine.fSlides[lastInd].classList.add("fancybox-slide--current");
+            this.startObj.dataToCreateSliderLine.fSlides[lastInd].classList.add("handsybox-slide--current");
             newInd = lastInd;
         } 
         fThumbsListAnchors.forEach( (el) => {
-            el.classList.remove("fancybox-thumbs-active");
+            el.classList.remove("handsybox-thumbs-active");
         });
 
         this.startObj.dataToCreateSliderLine.centerSliderInd = newInd;
-        fThumbsListAnchors[newInd].classList.add("fancybox-thumbs-active");
+        fThumbsListAnchors[newInd].classList.add("handsybox-thumbs-active");
         this.startObj.switchSmallThumbs.currentImg = this.startObj.dataToCreateSliderLine.centerSliderInd + 1;
         
         this.objInfobarSlider.setInfoInInfobar();

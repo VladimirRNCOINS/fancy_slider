@@ -8,8 +8,8 @@ class ResizeEvent {
     }
 
     calcResizeSlider (img) {
-        let fImages = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-image');
-        let fVideo = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-video');
+        let fImages = document.querySelector('.handsybox-slide--current .handsybox-content .handsybox-image');
+        let fVideo = document.querySelector('.handsybox-slide--current .handsybox-content .handsybox-video');
         
         if (!fImages && !fVideo) {
             this.startLoadingData(img);

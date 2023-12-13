@@ -26,7 +26,7 @@ class ZoomEvents {
     }
 
     getZoomData (mark) {
-        this.fsDivContent = document.querySelectorAll(".fancybox-content");
+        this.fsDivContent = document.querySelectorAll(".handsybox-content");
         this.fsDivContent.forEach((el) => {
             el.addEventListener('transitionend', this.transitionEndZoomHandler);
         });

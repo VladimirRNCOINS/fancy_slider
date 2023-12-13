@@ -54,7 +54,7 @@ class StartShowSlider {
         this.getImagesArrays();
         this.setImagesSettings();
         this.getIndexClosestDiv();
-        this.fancyContener = null;
+        this.handsyContener = null;
         this.sliderWrapper = null;
         this.resizeSession = false;
         this.dragEventName = null;
@@ -131,8 +131,8 @@ class StartShowSlider {
             this.sliderWrapper.remove();
             this.objInitial.body.append(htmlSlider);
         }
-        this.fancyContener = document.querySelector('.fancybox-container');
-        this.fancyContener.style.display = 'block';
+        this.handsyContener = document.querySelector('.handsybox-container');
+        this.handsyContener.style.display = 'block';
         this.objEvents = new Events(this);
         this.objCalcArrowsNavagation = new CalcArrowsNavagation(this);
         this.objCalcArrowsNavagation.setArrowsParams();

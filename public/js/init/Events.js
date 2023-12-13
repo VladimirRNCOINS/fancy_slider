@@ -12,17 +12,17 @@ class Events {
         this.startObj = startObj;
 
         this.objResizeEvent = new ResizeEvent(this.startObj);
-        this.resizeHandler = this.resizeFancySlider.bind(this);
+        this.resizeHandler = this.resizeHandsySlider.bind(this);
         window.addEventListener('resize', this.resizeHandler);
 
-        this.closeButton = document.querySelector('.fancybox-button--close');
+        this.closeButton = document.querySelector('.handsybox-button--close');
         if (this.closeButton) {
             this.closeButton.addEventListener('click', {handleEvent: this.clickCloseButton, self: this.startObj, events: this});
         }
         
         this.objChangeSlider = new ChangeSlider(this.startObj);
         this.switchThumbListHandler = this.switchThumbList.bind(this);
-        this.thumbsList = document.querySelectorAll('.fancybox-thumbs__list a');
+        this.thumbsList = document.querySelectorAll('.handsybox-thumbs__list a');
         if (this.thumbsList.length > 1) {
             for (let tl = 0; tl < this.thumbsList.length; tl++) {
                 this.thumbsList[tl].addEventListener('click', this.switchThumbListHandler);
@@ -42,7 +42,7 @@ class Events {
         }
 
         this.objCurrentSlide = new DragCurrentSlide(this.startObj);
-        this.fContents = document.querySelectorAll('.fancybox-content');
+        this.fContents = document.querySelectorAll('.handsybox-content');
         if (this.fContents.length) {
             this.fContents.forEach( (el) => {
                 el.addEventListener('pointerdown', {handleEvent: this.startDrag, self: this.startObj, currentDrag: this.objCurrentSlide});
@@ -52,7 +52,7 @@ class Events {
         }
         this.objLineSlide = new DragLineSlide(this.startObj);
         this.objMouseMoveSliderElement = new MouseMoveSliderElement();
-        this.fSlides = document.querySelectorAll('.fancybox-slide');
+        this.fSlides = document.querySelectorAll('.handsybox-slide');
         this.mouseMoveHandler = this.mouseMoveSlider.bind(this);
         if (this.fSlides.length) {
             this.fSlides.forEach( (el) => {
@@ -63,7 +63,7 @@ class Events {
             });
         }
 
-        this.fArrowsButton = document.querySelectorAll('.fancybox-navigation .fancybox-button');
+        this.fArrowsButton = document.querySelectorAll('.handsybox-navigation .handsybox-button');
         if (this.fArrowsButton.length > 1) {
             this.objArrowsNavigation = new ArrowsNavigation(this.startObj);
             this.clickArrowsNavigationHandler = this.clickArrowsNavigation.bind(this);
@@ -84,7 +84,7 @@ class Events {
         }
     }
 
-    resizeFancySlider () {
+    resizeHandsySlider () {
         this.objResizeEvent.calcResizeSlider(this.startObj.objClientProps.loadImg);
     }
 

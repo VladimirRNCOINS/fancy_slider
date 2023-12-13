@@ -4,8 +4,8 @@ class InfobarSlider {
     }
 
     setInfoInInfobar () {
-        let index = document.querySelector("span[data-fancybox-index]");
-        let count = document.querySelector("span[data-fancybox-count]");
+        let index = document.querySelector("span[data-handsybox-index]");
+        let count = document.querySelector("span[data-handsybox-count]");
         if (index) {
             index.innerHTML = this.startObj.switchSmallThumbs.currentImg;
         }

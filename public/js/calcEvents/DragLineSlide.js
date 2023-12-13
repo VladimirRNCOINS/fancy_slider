@@ -8,8 +8,8 @@ class DragLineSlide{
         this.objChangeSlider = new ChangeSlider(this.startObj);
         this.draggingLineHandler = this.dragging.bind(this);
         this.transitionEndLineHandler = this.transitionEnd.bind(this);
-        this.fContent = document.querySelectorAll('.fancybox-content');
-        this.fSlide = document.querySelectorAll('.fancybox-slide');
+        this.fContent = document.querySelectorAll('.handsybox-content');
+        this.fSlide = document.querySelectorAll('.handsybox-slide');
         this.fCurrentSlide = null;
         this.startDataPointer = {
             startDragX: null,
@@ -26,12 +26,12 @@ class DragLineSlide{
             this.setDataCreateSliderLine (e);
 
             if (this.startObj.dataToCreateSliderLine.leftSliderInd !== null) {
-                let closestLeft = this.fContent[this.startObj.dataToCreateSliderLine.leftSliderInd].closest('.fancybox-slide');
+                let closestLeft = this.fContent[this.startObj.dataToCreateSliderLine.leftSliderInd].closest('.handsybox-slide');
                 closestLeft.style.transform = ("translate(" + (this.startObj.dataToCreateSliderLine.leftXCoordinata) + "px, " + "0px)");
                 closestLeft.style.display = "block";
             }
             if (this.startObj.dataToCreateSliderLine.rightSliderInd !== null) {
-                let closestRight = this.fContent[this.startObj.dataToCreateSliderLine.rightSliderInd].closest('.fancybox-slide');
+                let closestRight = this.fContent[this.startObj.dataToCreateSliderLine.rightSliderInd].closest('.handsybox-slide');
                 closestRight.style.transform = ("translate(" + (this.startObj.dataToCreateSliderLine.rightXCoordinata) + "px, " + "0px)");
                 closestRight.style.display = "block";
             }
@@ -49,11 +49,11 @@ class DragLineSlide{
 
     setDataCreateSliderLine (e) {
         let elemPadding, currentInd;
-        this.fCurrentSlide = document.querySelector('.fancybox-slide--current');
+        this.fCurrentSlide = document.querySelector('.handsybox-slide--current');
 
-        this.startObj.dataToCreateSliderLine.fSlides = document.querySelectorAll('.fancybox-slide');
+        this.startObj.dataToCreateSliderLine.fSlides = document.querySelectorAll('.handsybox-slide');
         this.startObj.dataToCreateSliderLine.fSlides.forEach((el, ind) => {
-            if(el.classList.contains("fancybox-slide--current")) {
+            if(el.classList.contains("handsybox-slide--current")) {
                 currentInd = ind;
             }
         });

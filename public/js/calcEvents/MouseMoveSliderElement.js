@@ -3,10 +3,10 @@ class MouseMoveSliderElement {
     constructor () {
         this.mouseMove = false;
         this.navigations = {
-            hInfobar: document.querySelector('.fancybox-infobar'),
-            hToolbar: document.querySelector('.fancybox-toolbar'),
-            hNavigator: document.querySelector('.fancybox-navigation'),
-            hThumbList: document.querySelector('.fancybox-thumbs__list'),
+            hInfobar: document.querySelector('.handsybox-infobar'),
+            hToolbar: document.querySelector('.handsybox-toolbar'),
+            hNavigator: document.querySelector('.handsybox-navigation'),
+            hThumbList: document.querySelector('.handsybox-thumbs__list'),
         };
 
     }

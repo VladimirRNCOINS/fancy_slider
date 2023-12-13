@@ -4,7 +4,7 @@ class Calc {
     }
 
     setCalcSize () {
-        let fsDivContent = document.querySelectorAll(".fancybox-content");
+        let fsDivContent = document.querySelectorAll(".handsybox-content");
         
         for (let i=0; i < fsDivContent.length; i++) {
             fsDivContent[i].style.width = this.startObj.objClientProps.loadWidth + 'px';
@@ -16,7 +16,7 @@ class Calc {
     }
 
     getCalcScaleSize () {
-        let fCurrent = document.querySelector('.fancybox-slide--current .fancybox-content');
+        let fCurrent = document.querySelector('.handsybox-slide--current .handsybox-content');
         let naturalWidth = this.startObj.objClientProps.loadWidth;
         let naturalHeight = this.startObj.objClientProps.loadHeight;
         let newScale = +this.startObj.objClientProps.scale.toFixed(2);
@@ -39,14 +39,14 @@ class Calc {
     }
 
     setStyleTransition () {
-        let fsDivContent = document.querySelectorAll(".fancybox-content");
+        let fsDivContent = document.querySelectorAll(".handsybox-content");
         for (let i=0; i < fsDivContent.length; i++) {
             fsDivContent[i].style.transition = "all 0.25s linear 0s";
         }
     }
 
     resetStyleTransition () {
-        let fsDivContent = document.querySelectorAll(".fancybox-content");
+        let fsDivContent = document.querySelectorAll(".handsybox-content");
         for (let i=0; i < fsDivContent.length; i++) {
             fsDivContent[i].style.transition = "all 0s linear 0s";
         }

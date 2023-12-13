@@ -1,15 +1,15 @@
 class CalcArrowsNavagation {
     constructor (startObj) {
         this.startObj = startObj;
-        this.leftButton = document.querySelector('.fancybox-button--arrow_left');
-        this.rightButton = document.querySelector('.fancybox-button--arrow_right');
+        this.leftButton = document.querySelector('.handsybox-button--arrow_left');
+        this.rightButton = document.querySelector('.handsybox-button--arrow_right');
     }
 
     findActiveIndexThumbs () {
-        let allList = document.querySelectorAll('.fancybox-thumbs__list a');
+        let allList = document.querySelectorAll('.handsybox-thumbs__list a');
         if (allList.length) {
             allList.forEach( (el, ind) => {
-                if (el.className == 'fancybox-thumbs-active') {
+                if (el.className == 'handsybox-thumbs-active') {
                     this.startObj.switchSmallThumbs.clkThumbInd = +ind;
                 }
             });
@@ -34,7 +34,7 @@ class CalcArrowsNavagation {
     }
 
     checkVideoElement () {
-        let fVideoCurrent = document.querySelector('.fancybox-slide--current .fancybox-content .fancybox-video');
+        let fVideoCurrent = document.querySelector('.handsybox-slide--current .handsybox-content .handsybox-video');
         let hZoomIn = document.getElementById("zoom_in_handsy");
         let hZoomOut = document.getElementById("zoom_out_handsy");
         
@@ -44,7 +44,7 @@ class CalcArrowsNavagation {
             hZoomOut.style.display = 'none';
         }
         else {
-            let fVideoNoCurrent = document.querySelector('.fancybox-slide .fancybox-content .fancybox-video');
+            let fVideoNoCurrent = document.querySelector('.handsybox-slide .handsybox-content .handsybox-video');
             if (fVideoNoCurrent) {
                 fVideoNoCurrent.pause();
                 hZoomIn.style.display = 'inline-block';
