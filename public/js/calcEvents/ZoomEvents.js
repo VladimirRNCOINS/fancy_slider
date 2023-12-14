@@ -1,9 +1,11 @@
 import ResizeEvent from './ResizeEvent.js';
 import Calc from '../init/Calc.js';
+import Navigation from '../init/Navigation.js';
 
 class ZoomEvents {
     constructor (startObj) {
         this.startObj = startObj;
+        this.objNavigation = new Navigation(this.startObj);
         this.objResizeEvent = new ResizeEvent(this.startObj);
         this.objCalc = new Calc(this.startObj);
         this.transitionEndZoomHandler = this.zoomTransitionEnd.bind(this);
@@ -48,6 +50,8 @@ class ZoomEvents {
         this.objCalc.setCalcSize();
 
         this.objCalc.setStyleTransition();
+
+        this.objNavigation.manageNavigationTools();
     }
 
     zoomTransitionEnd () {

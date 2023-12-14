@@ -1,9 +1,11 @@
 import Calc from '../init/Calc.js';
 import ChangeSlider from './ChangeSlider.js';
+import Navigation from '../init/Navigation.js';
 
 class DragLineSlide{
     constructor (startObj) {
         this.startObj = startObj;
+        this.objNavigation = new Navigation(this.startObj);
         this.objCalc = new Calc(this.startObj);
         this.objChangeSlider = new ChangeSlider(this.startObj);
         this.draggingLineHandler = this.dragging.bind(this);
@@ -116,9 +118,12 @@ class DragLineSlide{
 
     stopLineDrag (e) {
         this.objCalc.setCalcLineChangeSlider();
+        
         this.fCurrentSlide.style.cursor = "grab";
 
         this.fCurrentSlide.removeEventListener('pointermove', this.draggingLineHandler);
+
+        this.objNavigation.manageNavigationTools();
     }
 
     setNullToDataToCreateSliderLine () {

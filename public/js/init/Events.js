@@ -51,7 +51,7 @@ class Events {
             });
         }
         this.objLineSlide = new DragLineSlide(this.startObj);
-        this.objMouseMoveSliderElement = new MouseMoveSliderElement();
+        this.objMouseMoveSliderElement = new MouseMoveSliderElement(this.startObj);
         this.fSlides = document.querySelectorAll('.handsybox-slide');
         this.mouseMoveHandler = this.mouseMoveSlider.bind(this);
         if (this.fSlides.length) {

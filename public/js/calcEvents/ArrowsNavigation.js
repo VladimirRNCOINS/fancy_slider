@@ -1,8 +1,10 @@
-import ChangeSlider from './ChangeSlider.js'
+import ChangeSlider from './ChangeSlider.js';
+import Navigation from '../init/Navigation.js';
 
 class ArrowsNavigation {
     constructor (startObj) {
         this.startObj = startObj;
+        this.objNavigation = new Navigation(this.startObj);
         this.leftButton = document.querySelector('.handsybox-button--arrow_left');
         this.rightButton = document.querySelector('.handsybox-button--arrow_right');
     }
@@ -16,6 +18,8 @@ class ArrowsNavigation {
         }
         this.objChangeSlider = new ChangeSlider(this.startObj);
         this.objChangeSlider.changeMainImage();
+
+        this.objNavigation.manageNavigationTools();
     }
 }
 

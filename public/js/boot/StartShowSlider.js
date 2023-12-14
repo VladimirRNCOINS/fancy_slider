@@ -57,6 +57,7 @@ class StartShowSlider {
         this.sliderWrapper = null;
         this.resizeSession = false;
         this.dragEventName = null;
+        this.navigationTimeout = null,
         this.setImagesSettings();
     }
 

@@ -1,9 +1,11 @@
 import Calc from '../init/Calc.js';
+import Navigation from '../init/Navigation.js';
 
 class DragCurrentSlide {
 
     constructor (startObj) {
         this.startObj = startObj;
+        this.objNavigation = new Navigation(this.startObj);
         this.objCalc = new Calc(this.startObj);
         this.draggingHandler = this.dragging.bind(this);
         this.currentElem = null;
@@ -42,6 +44,7 @@ class DragCurrentSlide {
     stopDrag (e) {
         this.currentElem.style.cursor = "grab";
         this.currentElem.removeEventListener('pointermove', this.draggingHandler);
+        this.objNavigation.manageNavigationTools();
     }
 }
 

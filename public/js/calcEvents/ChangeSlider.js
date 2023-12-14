@@ -1,10 +1,12 @@
 import ResizeEvent from './ResizeEvent.js';
 import InfobarSlider from './InfobarSlider.js';
 import CalcArrowsNavagation from './CalcArrowsNavagation.js';
+import Navigation from '../init/Navigation.js';
 
 class ChangeSlider {
     constructor (startObj) {
         this.startObj = startObj;
+        this.objNavigation = new Navigation(this.startObj);
         this.objCalcArrowsNavagation = new CalcArrowsNavagation(this.startObj);
         this.objInfobarSlider = new InfobarSlider(this.startObj);
         this.resizeEvent = new ResizeEvent(this.startObj);
@@ -29,6 +31,8 @@ class ChangeSlider {
         this.objCalcArrowsNavagation.checkVideoElement();
          
         this.resizeEvent.calcResizeSlider();
+
+        this.objNavigation.manageNavigationTools();
     }
 
     changeCurrentClass (fSlide, fThumbsListAnchors) {
