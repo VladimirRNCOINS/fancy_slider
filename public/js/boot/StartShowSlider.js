@@ -52,12 +52,12 @@ class StartShowSlider {
         this.objInitial = null,
         this.objResizeEvent = null,
         this.getImagesArrays();
-        this.setImagesSettings();
         this.getIndexClosestDiv();
         this.handsyContener = null;
         this.sliderWrapper = null;
         this.resizeSession = false;
         this.dragEventName = null;
+        this.setImagesSettings();
     }
 
     getClosestDiv (event) {
