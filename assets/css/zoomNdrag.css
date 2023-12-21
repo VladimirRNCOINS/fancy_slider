@@ -14,6 +14,12 @@
     transform: translateZ(0);
     width: 100%;
     z-index: 99992;
+    animation: handsybox-container forwards .3s cubic-bezier(0,0,.7,1);
+}
+
+@keyframes handsybox-container {
+    0% { opacity: .3; }
+    100% { opacity: 1; }
 }
 
 .handsybox-is-open .handsybox-bg {

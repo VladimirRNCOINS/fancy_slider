@@ -11,7 +11,7 @@ class Initial  {
         this.handsyBoxNavigation = this.prepareHtmlNavigation();
         this.dataIndexCountInfo = this.setIndexCountInfo();
         this.popUpHtml = `
-            <div class="handsybox-container handsybox-show-thumbs handsybox-is-open handsybox-is-zoomable handsybox-can-zoomIn" role="dialog" tabindex="-1" id="handsybox-container-1" style="transition-duration: 366ms; display: none;">
+            <div class="handsybox-container handsybox-show-thumbs handsybox-is-open handsybox-is-zoomable handsybox-can-zoomIn" role="dialog" tabindex="-1" id="handsybox-container-1" style="display: none;">
                 <div class="handsybox-bg"></div>
                 <div class="handsybox-inner">
                     <div class="handsybox-infobar">
